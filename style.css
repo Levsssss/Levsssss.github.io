@@ -1,0 +1,714 @@
+/* Global Reset and Variables */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --nav-bg: #0A1118;      /* Deep Navy for Header */
+    --grad-top: #0F172A;    /* Gradient Start */
+    --grad-bottom: #0D7066; /* Gradient End (Teal) */
+    --text-main: #FFFFFF;
+    --text-muted: #E2E8F0;
+    --accent: #0D9488;
+}
+
+/* Smooth Scrolling Magic */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    /* Your signature gradient background */
+    background: linear-gradient(to bottom, var(--grad-top), var(--grad-bottom));
+    background-attachment: fixed; /* Keeps gradient stationary while scrolling */
+}
+
+/* Typography for Headers */
+h1, h2, h3, .logo {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Global Paragraph Styling */
+p {
+    text-align: justify;
+    text-justify: inter-word; /* Optimizes spacing between words for a cleaner block layout */
+}
+
+/* Navigation Bar Styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: var(--nav-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    z-index: 1000;
+}
+
+.logo h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* Standard Section Sizing */
+.section {
+    min-height: 100vh; /* Makes every section take up full screen height */
+    padding: 120px 10% 50px 10%; /* Accounts for fixed navbar */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Home Section Specific Styles */
+.home-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    gap: 4rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Left Column: Typography styling */
+.home-text {
+    flex: 1;
+    max-width: 650px;
+}
+
+.hero-name {
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-description {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.hero-description p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+/* Pull the first sentence out with slightly cleaner contrast */
+.hero-description .highlight-p {
+    color: var(--text-main);
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+/* Right Column: Image and interactive elements */
+.home-profile-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    min-width: 320px;
+}
+
+.profile-card {
+    width: 300px;
+    height: 350px;
+    background-color: transparent;
+    border: 2px solid #064E4B; /* Dark teal border outline matching design */
+    border-radius: 32px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #ffffff; /* White card backdrop from image_ffd705.jpg */
+}
+
+/* Pill Badges and Interactive Buttons */
+.status-badge {
+    width: 280px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    background-color: #022C2A;
+    border: 2px solid #0D9488;
+    color: #14B8A6; /* Crisp teal text color */
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.resume-btn {
+    width: 280px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    background-color: #042F2E;
+    border: 2px solid #115E59;
+    color: #2DD4BF;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.resume-btn span {
+    font-weight: 600;
+}
+
+/* Subtle hover effects to make the web build feel alive */
+.resume-btn:hover {
+    background-color: #115E59;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(13, 148, 136, 0.3);
+}
+
+/* About Section Specific Styles */
+.about-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-container {
+    width: 100%;
+    max-width: 900px; /* Kept it tightly constrained for that clean center look */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns content neatly to the left */
+}
+
+.about-label {
+    font-family: 'Space Grotesk', sans-serif;
+    color: #14B8A6; /* Crisp accent teal for the code comment look */
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.about-title {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+}
+
+.about-title .accent-text {
+    color: #14B8A6;
+    font-weight: 600;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+}
+
+.about-content p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+/* Subtle highlights for core technologies */
+.tech-highlight {
+    color: var(--text-main);
+    font-weight: 600;
+    border-bottom: 1px dashed #0D9488;
+}
+
+/* Skills Grid/Row Framework */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows pills to drop to next line seamlessly if screen is small */
+    gap: 1rem;
+    width: 100%;
+}
+
+.skill-pill {
+    padding: 0.6rem 1.2rem;
+    background-color: rgba(2, 44, 42, 0.4); /* Transparent dark teal blend */
+    border: 1px solid #115E59;
+    border-radius: 50px;
+    color: #2DD4BF;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+/* Elevate pill on hover */
+.skill-pill:hover {
+    background-color: #0D9488;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+}
+
+/* Projects Section Specific Styles */
+.projects-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 120px;
+}
+
+.projects-container {
+    width: 100%;
+    max-width: 1050px;
+    display: flex;
+    flex-direction: column;
+}
+
+.projects-label {
+    font-family: 'Space Grotesk', sans-serif;
+    color: #14B8A6;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.projects-title {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 3rem;
+    color: var(--text-main);
+}
+
+.projects-title .accent-text {
+    color: #14B8A6;
+    font-weight: 600;
+}
+
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    width: 100%;
+}
+
+/* Two-column structural project card layout */
+.project-card {
+    background-color: rgba(10, 17, 24, 0.75);
+    border: 1px solid #064E4B;
+    border-radius: 24px;
+    padding: 2rem;
+    display: flex;
+    gap: 3rem;              /* Increased gap spacing for a cleaner split */
+    align-items: center;    /* Vertically centers the text content alongside the image */
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    border-color: #14B8A6;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(13, 148, 136, 0.15);
+}
+
+/* Left Column Image Container Styling */
+.project-img-container {
+    flex: 0 0 420px;        /* Increased from 320px to 420px to fully showcase system details */
+    height: 260px;          /* Locked aspect ratio to comfortably hold full dashboard screens */
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #ffffff; /* White canvas backdrop matching the app UI inside image_fed897.png */
+    border: 1px solid #115E59;
+    display: flex;
+}
+
+.project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* Crops nicely across aspect ratios without distortion */
+    object-position: top left; /* Prioritizes showing the main navigation/header of your dashboards */
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.04); /* Smooth micro-zoom when hovering the card */
+}
+
+/* Right Column Content Panel */
+.project-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures buttons stick elegantly to the bottom */
+    gap: 1.5rem;
+}
+
+.project-category {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #2DD4BF;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.project-info h3 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+    color: var(--text-main);
+}
+
+.project-info p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+/* Bottom align layout for tags and the arrow redirection button */
+/* Updated Footer to stack links cleanly below skill tags */
+.project-footer {
+    display: flex;
+    flex-direction: column; /* Switches from side-by-side row to a top-to-bottom stack */
+    align-items: flex-start; /* Left-aligns both the tags and the action link */
+    gap: 1.2rem;             /* Spacing between the row of tags and the clickable link */
+    width: 100%;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-tags span {
+    font-size: 0.8rem;
+    background-color: #022C2A;
+    border: 1px solid #115E59;
+    color: #2DD4BF;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+}
+
+.project-link {
+    color: #14B8A6;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.project-link:hover {
+    color: var(--text-main);
+}
+
+/* Certifications Section Specific Styles */
+.certs-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.certs-container {
+    width: 100%;
+    max-width: 1050px;
+    display: flex;
+    flex-direction: column;
+}
+
+.certs-label {
+    font-family: 'Space Grotesk', sans-serif;
+    color: #14B8A6;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.certs-title {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 3.5rem;
+    color: var(--text-main);
+}
+
+/* Two-column layout grid matching image_ffd3e3.jpg */
+.certs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem; /* Spacious horizontal gap between the two credentials */
+    width: 100%;
+}
+
+/* Flex-column structure to cleanly sit the text underneath the image block */
+.cert-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+}
+
+/* Frame container protecting certificate image dimensions */
+.cert-img-container {
+    width: 100%;
+    max-width: 460px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35); /* Crisp drop shadow to make document frames pop */
+    border: 1px solid rgba(17, 94, 89, 0.2);
+    transition: all 0.3s ease;
+    display: flex;
+}
+
+.cert-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* Hover elevation targeting the certificate image frame */
+.cert-card:hover .cert-img-container {
+    transform: translateY(-6px);
+    border-color: #14B8A6;
+    box-shadow: 0 18px 40px rgba(13, 148, 136, 0.25); /* Elegant teal glow backdrop on hover */
+}
+
+/* Text elements centered underneath the mockup */
+.cert-details h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 0.3rem;
+}
+
+.cert-date {
+    font-size: 1rem;
+    color: #2DD4BF;
+    font-weight: 300;
+}
+
+/* Contacts Section Specific Styles */
+.contacts-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 120px; /* Leaves clean space at the very bottom of the page */
+}
+
+.contacts-container {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts-label {
+    font-family: 'Space Grotesk', sans-serif;
+    color: #14B8A6;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.contacts-title {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+}
+
+.contacts-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: 3rem;
+    max-width: 750px;
+}
+
+/* Three-column layout grid for communication hubs */
+.contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* Interactive Contact Card Link Linkages */
+.contact-card {
+    background-color: rgba(10, 17, 24, 0.75);
+    border: 1px solid #064E4B;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    border-color: #14B8A6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(13, 148, 136, 0.15);
+}
+
+.contact-card .contact-icon {
+    font-size: 1.5rem;
+    background-color: #022C2A;
+    border: 1px solid #115E59;
+    padding: 0.5rem;
+    border-radius: 10px;
+    line-height: 1;
+}
+
+.contact-info h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text-main);
+    margin-bottom: 0.15rem;
+}
+
+.contact-info p {
+    font-size: 0.9rem;
+    color: #2DD4BF;
+    font-weight: 300;
+    word-break: break-all;
+}
+
+/* Responsive Breakpoint for Mobile Screens */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 5%;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .home-container {
+        flex-direction: column-reverse; /* Stacks image on top, text on bottom */
+        text-align: center;
+        gap: 2.5rem;
+    }
+
+    .home-text {
+        max-width: 100%;
+    }
+
+    .hero-name {
+        font-size: 2.5rem; /* Slightly smaller text for mobile screens */
+        margin-bottom: 1.5rem;
+    }
+
+    .home-profile-area {
+        min-width: 100%;
+    }
+
+    .about-title {
+        font-size: 2.2rem;
+    }
+    .about-container {
+        align-items: center;
+        text-align: center;
+    }
+    .skills-container {
+        justify-content: center;
+    }
+    .projects-title {
+        font-size: 2.2rem;
+    }
+    
+    .project-card {
+        flex-direction: column; /* Stack the image on top of the text block */
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .project-img-container {
+        flex: none;
+        width: 100%;
+        height: 220px; /* Keeps dashboard screenshots highly viewable even when stacked on mobile device screens */
+    }
+
+    .project-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+    }
+
+    .certs-title {
+        font-size: 2.2rem;
+    }
+
+    .certs-grid {
+        grid-template-columns: 1fr; /* Drop down to a single column list layout on small devices */
+        gap: 3rem;
+    }
+    
+    .cert-img-container {
+        max-width: 100%; /* Allows the credentials frame to fill the responsive container fluidly */
+    }
+    
+    .cert-card {
+        padding: 1.5rem;
+    }
+
+    .contacts-title {
+        font-size: 2.2rem;
+    }
+
+    .contacts-grid {
+        grid-template-columns: 1fr; /* Stack the elements vertically */
+        gap: 1rem;
+    }
+}
+
